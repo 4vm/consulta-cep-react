@@ -8,7 +8,7 @@ import './App.css'
 import Address from './components/Address'
 
 function App() {
-  const [addressData, setAddressData] = useState([])
+  const [addressData, setAddressData] = useState({})
 
   const inputHandler = (input) => {
     fetchData(input)
@@ -28,13 +28,15 @@ function App() {
     <div className="App">
       <h1>Consulta cep</h1>
       <Form onInputHandler={inputHandler} />
-      <Address
-        cep={addressData.cep}
-        logradouro={addressData.logradouro}
-        bairro={addressData.bairro}
-        localidade={addressData.localidade}
-        uf={addressData.uf}
-      />
+      {addressData && (
+        <Address
+          cep={addressData.cep}
+          logradouro={addressData.logradouro}
+          bairro={addressData.bairro}
+          localidade={addressData.localidade}
+          uf={addressData.uf}
+        />
+      )}
     </div>
   )
 }
