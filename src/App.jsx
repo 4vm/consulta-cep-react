@@ -1,11 +1,16 @@
 import { useState } from 'react'
 
 import axios from 'axios'
+import styled from 'styled-components'
 
 import Form from './components/Form'
-
-import './App.css'
 import Address from './components/Address'
+
+const Container = styled.div`
+  display: grid;
+  place-items: center;
+  margin: 4rem;
+`
 
 function App() {
   const [addressData, setAddressData] = useState({})
@@ -25,8 +30,7 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <h1>Consulta cep</h1>
+    <Container>
       <Form onInputHandler={inputHandler} />
       {addressData && (
         <Address
@@ -37,7 +41,7 @@ function App() {
           uf={addressData.uf}
         />
       )}
-    </div>
+    </Container>
   )
 }
 
