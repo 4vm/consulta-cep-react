@@ -18,8 +18,7 @@ const Main = styled.main`
 `
 
 function App() {
-  const [addressData, setAddressData] = useState({})
-  const [isValidData, setisValidData] = useState(false)
+  const [addressData, setAddressData] = useState()
 
   const inputHandler = (input) => {
     fetchData(input)
@@ -29,17 +28,15 @@ function App() {
     try {
       const resp = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
       setAddressData(resp.data)
-      setisValidData(true)
     } catch (err) {
-      console.error(err)
-      setisValidData(false)
+      alert('Algo deu errado. 🙁\nPadrão do CEP: 00000-000 | 00000000')
     }
   }
 
   return (
     <Main>
       <Form onInputHandler={inputHandler} />
-      {isValidData && (
+      {addressData && (
         <Address
           cep={addressData.cep}
           logradouro={addressData.logradouro}

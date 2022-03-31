@@ -96,7 +96,7 @@ const Form = ({ onInputHandler }) => {
         <Input
           type="text"
           value={input}
-          maxLength="8"
+          maxLength="9"
           onChange={inputChangeHandler}
         />
         <Button>Consultar</Button>

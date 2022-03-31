@@ -7,7 +7,7 @@ const Div = styled.div`
   height: 14rem;
 
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   font-weight: 300;
 `
 
