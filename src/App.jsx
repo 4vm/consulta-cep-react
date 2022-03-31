@@ -1,19 +1,25 @@
 import { useState } from 'react'
 
 import axios from 'axios'
+
 import styled from 'styled-components'
 
 import Form from './components/Form'
 import Address from './components/Address'
 
-const Container = styled.div`
-  display: grid;
-  place-items: center;
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   margin: 4rem;
+
+  gap: 4rem;
 `
 
 function App() {
   const [addressData, setAddressData] = useState({})
+  const [isValidData, setisValidData] = useState(false)
 
   const inputHandler = (input) => {
     fetchData(input)
@@ -22,17 +28,18 @@ function App() {
   const fetchData = async (cep) => {
     try {
       const resp = await axios.get(`https://viacep.com.br/ws/${cep}/json/`)
-      console.log(resp.data)
       setAddressData(resp.data)
+      setisValidData(true)
     } catch (err) {
       console.error(err)
+      setisValidData(false)
     }
   }
 
   return (
-    <Container>
+    <Main>
       <Form onInputHandler={inputHandler} />
-      {addressData && (
+      {isValidData && (
         <Address
           cep={addressData.cep}
           logradouro={addressData.logradouro}
@@ -41,20 +48,8 @@ function App() {
           uf={addressData.uf}
         />
       )}
-    </Container>
+    </Main>
   )
 }
 
 export default App
-
-/*
-axios
-      .get(`https://viacep.com.br/ws/${cep}/json/`)
-      .then((resp) => {
-        console.log(resp.data)
-      })
-      .catch((err) => {
-        // Handle Error Here
-        console.error(err)
-      })
-*/

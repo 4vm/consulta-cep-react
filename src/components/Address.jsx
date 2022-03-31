@@ -1,15 +1,26 @@
+import styled from 'styled-components'
+
 import Card from './UI/Card'
+
+const Div = styled.div`
+  width: 25rem;
+  height: 14rem;
+
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+`
 
 const Address = ({ cep, logradouro, bairro, localidade, uf }) => {
   return (
     <Card>
-      <div>
-        <h2>{cep}</h2>
-        <h2>{logradouro}</h2>
-        <h2>{bairro}</h2>
-        <h2>{localidade}</h2>
-        <h2>{uf}</h2>
-      </div>
+      <Div>
+        <p>{cep}</p>
+        <p>{logradouro}</p>
+        <p>{bairro}</p>
+        <p>{localidade}</p>
+        <p>{uf}</p>
+      </Div>
     </Card>
   )
 }

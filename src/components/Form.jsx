@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import Card from './UI/Card'
-
 import styled from 'styled-components'
+
+import Card from './UI/Card'
 
 const StyledForm = styled.form`
   display: grid;
@@ -93,7 +93,12 @@ const Form = ({ onInputHandler }) => {
           <h1>Consulta CEP</h1>
           <label>Digite o CEP:</label>
         </Title>
-        <Input type="text" value={input} onChange={inputChangeHandler} />
+        <Input
+          type="text"
+          value={input}
+          maxLength="8"
+          onChange={inputChangeHandler}
+        />
         <Button>Consultar</Button>
       </StyledForm>
     </Card>
@@ -101,5 +106,3 @@ const Form = ({ onInputHandler }) => {
 }
 
 export default Form
-
-//box-shadow: inset 0 0 0 2px #e3e8ee;
